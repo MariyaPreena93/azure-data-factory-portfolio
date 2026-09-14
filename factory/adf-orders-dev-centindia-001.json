@@ -1,0 +1,15 @@
+{
+	"name": "adf-orders-dev-centindia-001",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "27c4bf66-332f-41a9-b868-35bba861e92b",
+		"tenantId": "5728780c-5511-464a-ba9d-0d56e6471b14"
+	}
+}
