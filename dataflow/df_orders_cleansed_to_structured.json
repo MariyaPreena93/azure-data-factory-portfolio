@@ -64,7 +64,7 @@
 					"name": "DropDuplicateColumnsOrders"
 				},
 				{
-					"name": "SubtotalAndUpdatedTimestampOrders"
+					"name": "idAndSubtotalAndUpdatedTimestampOrders"
 				},
 				{
 					"name": "RearrangeColumnsOrders"
@@ -139,9 +139,11 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> DropDuplicateColumnsOrders",
-				"DropDuplicateColumnsOrders derive(SUBTOTAL = UNIT_PRICE*QUANTITY,",
-				"          UPDATED_TIMESTAMP = currentUTC()) ~> SubtotalAndUpdatedTimestampOrders",
-				"SubtotalAndUpdatedTimestampOrders select(mapColumn(",
+				"DropDuplicateColumnsOrders derive(ORDER_ITEM_ID = toInteger(concat(toString(ORDER_ID),toString(PRODUCT_ID))),",
+				"          SUBTOTAL = UNIT_PRICE*QUANTITY,",
+				"          UPDATED_TIMESTAMP = currentUTC()) ~> idAndSubtotalAndUpdatedTimestampOrders",
+				"idAndSubtotalAndUpdatedTimestampOrders select(mapColumn(",
+				"          ORDER_ITEM_ID,",
 				"          ORDER_ID,",
 				"          ORDER_DATE,",
 				"          CUSTOMER_ID,",
