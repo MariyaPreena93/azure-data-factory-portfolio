@@ -1,0 +1,70 @@
+{
+	"name": "pl_execute_orders_sql",
+	"properties": {
+		"activities": [
+			{
+				"name": "Landing to Raw",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pl_orders_landing_to_raw",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Raw to cleansed",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Landing to Raw",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pl_orders_raw_to_cleansed",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Cleansed to structured sql",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Raw to cleansed",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pl_orders_cleansed_to_structured_sql",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"annotations": []
+	}
+}
