@@ -8,11 +8,23 @@
 		"ls_dl_orders_accountKey": {
 			"value": ""
 		},
+		"ls_sql_orders_password": {
+			"value": ""
+		},
 		"ls_st_orders_connectionString": {
 			"value": ""
 		},
 		"ls_dl_orders_properties_typeProperties_url": {
 			"value": "https://dlcustorders001.dfs.core.windows.net/"
+		},
+		"ls_sql_orders_properties_typeProperties_server": {
+			"value": "sqlserver-orders-dev-1.database.windows.net"
+		},
+		"ls_sql_orders_properties_typeProperties_database": {
+			"value": "sqldb-orders-dev"
+		},
+		"ls_sql_orders_properties_typeProperties_userName": {
+			"value": "sqladmin"
 		},
 		"containerUri": {
 			"value": ""
